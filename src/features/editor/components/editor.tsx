@@ -25,6 +25,10 @@ export default function Editor() {
       initialCanvas: canvas,
       initialContainer: containerRef.current!,
     });
+
+    return () => {
+      canvas.dispose();
+    };
   }, [init]);
 
   return (
@@ -43,7 +47,6 @@ export default function Editor() {
           >
             <canvas ref={canvasRef} />
           </div>
-
           <Footer />
         </main>
       </div>
