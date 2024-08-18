@@ -1,3 +1,5 @@
+import { fabric } from "fabric";
+
 export type ActiveTool =
   | "select"
   | "shapes"
@@ -14,3 +16,62 @@ export type ActiveTool =
   | "ai"
   | "remove-bg"
   | "templates";
+
+export const FILL_COLOR = "rgba(0,0,0,1)";
+export const STROKE_COLOR = "rgba(0,0,0,1)";
+export const STROKE_WIDTH = 2;
+
+const SHAPE_COMMON_OPTIONS = {
+  left: 100,
+  top: 100,
+  fill: FILL_COLOR,
+  stroke: STROKE_COLOR,
+  strokeWidth: STROKE_WIDTH,
+};
+
+export const CIRCLE_OPTIONS = {
+  SHAPE_COMMON_OPTIONS,
+  radius: 200,
+};
+
+export const RECTANGLE_OPTIONS = {
+  SHAPE_COMMON_OPTIONS,
+  width: 400,
+  height: 400,
+  angle: 0,
+};
+
+export const TRIANGLE_OPTIONS = {
+  SHAPE_COMMON_OPTIONS,
+  width: 400,
+  height: 400,
+  angle: 0,
+};
+
+export const DIAMOND_OPTIONS = {
+  SHAPE_COMMON_OPTIONS,
+  width: 600,
+  height: 600,
+  angle: 0,
+};
+
+export const HEXAGON_OPTIONS = {
+  SHAPE_COMMON_OPTIONS,
+  width: 300,
+  height: 300,
+  angle: 0,
+};
+
+export type BuilsEditorProps = {
+  canvas: fabric.Canvas;
+};
+
+export interface Editor {
+  addCircle: () => void;
+  addSoftRectangle: () => void;
+  addRectangle: () => void;
+  addTriangle: () => void;
+  addInverseTriangle: () => void;
+  addDiamond: () => void;
+  addHexagon: () => void;
+}

@@ -33,7 +33,7 @@ export default function Editor() {
     [activeTool]
   );
 
-  const { init } = useEditor();
+  const { init, editor } = useEditor();
 
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef(null);
@@ -65,6 +65,7 @@ export default function Editor() {
         />
 
         <ShapeSidebar
+          editor={editor}
           activeTool={activeTool}
           onChangeActiveTool={onChangeActiveTool}
         />
@@ -73,7 +74,7 @@ export default function Editor() {
           <Toolbar />
 
           <div
-            className="h-[calc(100%-176px)] flex-1 bg-muted"
+            className="h-[calc(100%-124px)] flex-1 bg-muted"
             ref={containerRef}
           >
             <canvas ref={canvasRef} />

@@ -1,15 +1,12 @@
-import { useCallback, useEffect } from "react";
 import { fabric } from "fabric";
+import { useCallback, useEffect } from "react";
 
 interface UseAutoResizeProps {
   canvas: fabric.Canvas | null;
   container: HTMLDivElement | null;
 }
 
-export default function useAutoResize({
-  canvas,
-  container,
-}: UseAutoResizeProps) {
+export const useAutoResize = ({ canvas, container }: UseAutoResizeProps) => {
   const autoZoom = useCallback(() => {
     if (!canvas || !container) return;
 
@@ -81,4 +78,6 @@ export default function useAutoResize({
       }
     };
   }, [canvas, container, autoZoom]);
-}
+
+  return { autoZoom };
+};
