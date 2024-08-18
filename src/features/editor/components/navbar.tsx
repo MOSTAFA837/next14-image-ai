@@ -3,8 +3,6 @@
 import {
   ChevronDown,
   Download,
-  icons,
-  Loader,
   MousePointerClick,
   Redo2,
   Undo2,
@@ -22,9 +20,19 @@ import { Button } from "@/components/ui/button";
 import { Logo } from "./logo";
 import { Separator } from "@/components/ui/separator";
 import Hint from "@/components/hint";
-import { BsCloudCheck, BsCloudSlash } from "react-icons/bs";
+import { BsCloudCheck } from "react-icons/bs";
+import { ActiveTool } from "../types";
+import { cn } from "@/lib/utils";
 
-export default function Navbar() {
+interface SidebarProps {
+  activeTool: ActiveTool;
+  onChangeActiveTool: (tool: ActiveTool) => void;
+}
+
+export default function Navbar({
+  activeTool,
+  onChangeActiveTool,
+}: SidebarProps) {
   return (
     <nav className="w-full flex items-center p-4 h-[68px] gap-x-8 border-b lg:pl-[34px]">
       <Logo />
@@ -57,7 +65,15 @@ export default function Navbar() {
         <Separator orientation="vertical" className="mx-2" />
 
         <Hint side="bottom" label="Select" sideOffset={10}>
-          <Button variant="ghost" size="icon" onClick={() => {}} className="">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => onChangeActiveTool("select")}
+            className={cn(
+              "hover:bg-gray-200",
+              activeTool === "select" && "bg-gray-200"
+            )}
+          >
             <MousePointerClick className="size-4" />
           </Button>
         </Hint>
