@@ -1,5 +1,5 @@
 import Hint from "@/components/hint";
-import { ActiveTool, Editor } from "../types";
+import { ActiveTool, Editor, FILL_COLOR } from "../types";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
@@ -15,7 +15,7 @@ export default function Toolbar({
   activeTool,
   onChangeActiveTool,
 }: ToolbarProps) {
-  const fillColor = editor?.fillColor;
+  const fillColor = editor?.getActiveFillColor() || FILL_COLOR;
 
   if (editor?.selectedObjects.length === 0) {
     return (

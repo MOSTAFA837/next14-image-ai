@@ -23,6 +23,16 @@ export const colors = [
   "transparent",
 ];
 
+export const selectionDependentTools = [
+  "fill",
+  "font",
+  "filter",
+  "opacity",
+  "remove-bg",
+  "stroke-color",
+  "stroke-width",
+];
+
 export type ActiveTool =
   | "select"
   | "shapes"
@@ -85,6 +95,10 @@ export const HEXAGON_OPTIONS = {
   angle: 0,
 };
 
+export interface EditorHookProps {
+  clearSelectionCallback?: () => void;
+}
+
 export type BuilsEditorProps = {
   canvas: fabric.Canvas;
   fillColor: string;
@@ -109,7 +123,7 @@ export interface Editor {
   addHexagon: () => void;
   selectedObjects: fabric.Object[];
   canvas: fabric.Canvas;
-  fillColor: string;
+  getActiveFillColor: () => void;
   strokeColor: string;
   strokeWidth: number;
 }
