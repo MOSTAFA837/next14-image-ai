@@ -53,6 +53,7 @@ export type ActiveTool =
 export const FILL_COLOR = "rgba(0,0,0,1)";
 export const STROKE_COLOR = "rgba(0,0,0,1)";
 export const STROKE_WIDTH = 2;
+export const STROKE_DASH_ARRAY = [];
 
 const SHAPE_COMMON_OPTIONS = {
   left: 100,
@@ -108,12 +109,15 @@ export type BuilsEditorProps = {
   setFillColor: (value: string) => void;
   setStrokeColor: (value: string) => void;
   setStrokeWidth: (value: number) => void;
+  strokeDashArray: number[];
+  setStrokeDashArray: (value: number[]) => void;
 };
 
 export interface Editor {
   changeFillColor: (value: string) => void;
   changeStrokeColor: (value: string) => void;
   changeStrokeWidth: (value: number) => void;
+  changeStrokeDashArray: (value: number[]) => void;
   addCircle: () => void;
   addSoftRectangle: () => void;
   addRectangle: () => void;
@@ -125,5 +129,6 @@ export interface Editor {
   canvas: fabric.Canvas;
   getActiveFillColor: () => void;
   getActiveStrokeColor: () => void;
-  strokeWidth: number;
+  getActiveStrokeًWidth: () => void;
+  getActiveStrokeًDashArray: () => number[];
 }
