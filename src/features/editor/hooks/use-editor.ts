@@ -187,7 +187,15 @@ const buildEditor = ({
 
       return value as string;
     },
-    strokeColor,
+    getActiveStrokeColor: () => {
+      const selctedObject = selectedObjects[0];
+
+      if (!selctedObject) return strokeColor;
+
+      const value = selctedObject.get("stroke") || strokeColor;
+
+      return value;
+    },
     strokeWidth,
     selectedObjects,
   };
