@@ -1,4 +1,5 @@
 import { fabric } from "fabric";
+import { ITextboxOptions } from "fabric/fabric-impl";
 import * as material from "material-colors";
 
 export const colors = [
@@ -33,6 +34,27 @@ export const selectionDependentTools = [
   "stroke-width",
 ];
 
+export const fonts = [
+  "Arial",
+  "Arial Black",
+  "Verdana",
+  "Helvetica",
+  "Tahoma",
+  "Trebuchet MS",
+  "Times New Roman",
+  "Georgia",
+  "Garamond",
+  "Courier New",
+  "Brush Script MT",
+  "Palatino",
+  "Bookman",
+  "Comic Sans MS",
+  "Impact",
+  "Lucida Sans Unicode",
+  "Geneva",
+  "Lucida Console",
+];
+
 export type ActiveTool =
   | "select"
   | "shapes"
@@ -54,6 +76,9 @@ export const FILL_COLOR = "rgba(0,0,0,1)";
 export const STROKE_COLOR = "rgba(0,0,0,1)";
 export const STROKE_WIDTH = 2;
 export const STROKE_DASH_ARRAY = [];
+export const FONT_FAMILY = "Arial";
+export const FONT_SIZE = 52;
+export const FONT_WEIGHT = 400;
 
 const SHAPE_COMMON_OPTIONS = {
   left: 100,
@@ -96,6 +121,15 @@ export const HEXAGON_OPTIONS = {
   angle: 0,
 };
 
+export const TEXT_OPTIONS = {
+  type: "textbox",
+  left: 100,
+  top: 100,
+  fill: FILL_COLOR,
+  fontSize: FONT_SIZE,
+  fontFamily: FONT_FAMILY,
+};
+
 export interface EditorHookProps {
   clearSelectionCallback?: () => void;
 }
@@ -114,6 +148,7 @@ export type BuilsEditorProps = {
 };
 
 export interface Editor {
+  addText: (value: string, options?: ITextboxOptions) => void;
   changeOpacity: (value: number) => void;
   getActiveOpacity: () => number;
   bringForward: () => void;
