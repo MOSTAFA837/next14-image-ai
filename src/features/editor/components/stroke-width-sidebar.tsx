@@ -64,8 +64,8 @@ export default function StrokeWidthSidebar({
             className={cn(
               "w-full h-16 justify-start text-left",
               JSON.stringify(typeValue) === `[]`
-                ? "border-2 border-gray-300 opacity-100"
-                : "opacity-50"
+                ? "border-2 border-blue-400 opacity-100"
+                : "opacity-65"
             )}
             style={{ padding: "8px 16px" }}
           >
@@ -79,8 +79,8 @@ export default function StrokeWidthSidebar({
             className={cn(
               "w-full h-16 justify-start text-left",
               JSON.stringify(typeValue) === `[5,5]`
-                ? "border-2 border-gray-300 opacity-100"
-                : "opacity-50"
+                ? "border-2 border-blue-400 opacity-100"
+                : "opacity-65"
             )}
             style={{ padding: "8px 16px" }}
           >
