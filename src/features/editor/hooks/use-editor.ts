@@ -9,6 +9,7 @@ import {
   EditorHookProps,
   FILL_COLOR,
   FONT_FAMILY,
+  FONT_SIZE,
   FONT_WEIGHT,
   HEXAGON_OPTIONS,
   RECTANGLE_OPTIONS,
@@ -205,6 +206,16 @@ const buildEditor = ({
 
       canvas.renderAll();
     },
+    changeFontSize: (value: number) => {
+      canvas.getActiveObjects().forEach((object) => {
+        if (isTextType(object.type)) {
+          // @ts-ignore
+          object.set({ fontSize: value });
+        }
+      });
+
+      canvas.renderAll();
+    },
     addCircle: () => {
       const object = new fabric.Circle({
         ...CIRCLE_OPTIONS,
@@ -396,6 +407,16 @@ const buildEditor = ({
 
       // @ts-ignore
       const value = selctedObject.get("textAlign") || "left";
+
+      return value;
+    },
+    getActiveFontSize: () => {
+      const selctedObject = selectedObjects[0];
+
+      if (!selctedObject) return FONT_SIZE;
+
+      // @ts-ignore
+      const value = selctedObject.get("fontSize") || FONT_SIZE;
 
       return value;
     },

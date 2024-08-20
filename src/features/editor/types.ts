@@ -170,6 +170,7 @@ export interface Editor {
   changeOpacity: (value: number) => void;
   changeFontFamily: (value: string) => void;
   changeFontWeight: (value: number) => void;
+  changeFontSize: (value: number) => void;
   changeFontStyle: (value: string) => void;
   changeTextAlign: (value: string) => void;
   changeFontLinethrough: (value: boolean) => void;
@@ -196,6 +197,7 @@ export interface Editor {
   getActiveFontFamily: () => string;
   getActiveStrokeًDashArray: () => number[];
   getActiveFontWeight: () => number;
+  getActiveFontSize: () => number;
   getActiveFontStyle: () => string;
   getActiveTextAlign: () => string;
   getActiveFontLinethrough: () => boolean;

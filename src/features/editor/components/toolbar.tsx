@@ -3,6 +3,7 @@ import {
   ActiveTool,
   Editor,
   FILL_COLOR,
+  FONT_SIZE,
   FONT_WEIGHT,
   STROKE_COLOR,
   alignTypes,
@@ -15,6 +16,7 @@ import { RxTransparencyGrid } from "react-icons/rx";
 import { isTextType } from "../utils";
 import { FaBold, FaItalic, FaStrikethrough, FaUnderline } from "react-icons/fa";
 import { useState } from "react";
+import { FontSizeInput } from "./font-size-input";
 
 interface ToolbarProps {
   editor: Editor | undefined;
@@ -35,6 +37,7 @@ export default function Toolbar({
   const initialFontUnderline = editor?.getActiveFontUnderline();
   const initialFontLinethrough = editor?.getActiveFontLinethrough();
   const initialTextAlign = editor?.getActiveTextAlign();
+  const initialTextSize = editor?.getActiveFontSize() || FONT_SIZE;
 
   const [properties, setProperties] = useState({
     fillColor: initialFillColor,
@@ -45,15 +48,16 @@ export default function Toolbar({
     fontUnderline: initialFontUnderline,
     fontLinethrough: initialFontLinethrough,
     textAlign: initialTextAlign,
+    fontSize: initialTextSize,
   });
 
   const selectedObjectsType = editor?.selectedObjects[0]?.type;
-  const selectObject = editor?.selectedObjects[0];
+  const selectedObject = editor?.selectedObjects[0];
 
   const isText = isTextType(selectedObjectsType);
 
   const toggleBold = () => {
-    if (!selectObject) return;
+    if (!selectedObject) return;
 
     const newValue = properties.fontWeight > 500 ? 500 : 700;
 
@@ -65,7 +69,7 @@ export default function Toolbar({
   };
 
   const toggleItalic = () => {
-    if (!selectObject) return;
+    if (!selectedObject) return;
 
     const isItalic = properties.fontStyle === "italic";
     const newValue = isItalic ? "normal" : "italic";
@@ -78,7 +82,7 @@ export default function Toolbar({
   };
 
   const toggleUnderline = () => {
-    if (!selectObject) return;
+    if (!selectedObject) return;
 
     const newValue = properties.fontUnderline ? false : true;
 
@@ -90,7 +94,7 @@ export default function Toolbar({
   };
 
   const toggleLinethrough = () => {
-    if (!selectObject) return;
+    if (!selectedObject) return;
 
     const newValue = properties.fontLinethrough ? false : true;
 
@@ -102,12 +106,24 @@ export default function Toolbar({
   };
 
   const onChangeTextAlign = (value: string) => {
-    if (!selectObject) return;
+    if (!selectedObject) return;
 
     editor?.changeTextAlign(value);
     setProperties((current) => ({
       ...current,
       textAlign: value,
+    }));
+  };
+
+  const onChangeFontSize = (value: number) => {
+    if (!selectedObject) {
+      return;
+    }
+
+    editor?.changeFontSize(value);
+    setProperties((current) => ({
+      ...current,
+      fontSize: value,
     }));
   };
 
@@ -267,6 +283,13 @@ export default function Toolbar({
               </div>
             );
           })}
+
+          <div className="flex items-center h-full justify-center">
+            <FontSizeInput
+              value={properties.fontSize}
+              onChange={onChangeFontSize}
+            />
+          </div>
         </>
       )}
 
