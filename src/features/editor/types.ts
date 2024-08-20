@@ -1,5 +1,6 @@
 import { fabric } from "fabric";
 import { ITextboxOptions } from "fabric/fabric-impl";
+import { AlignLeft, AlignCenter, AlignRight } from "lucide-react";
 import * as material from "material-colors";
 
 export const colors = [
@@ -32,6 +33,21 @@ export const selectionDependentTools = [
   "remove-bg",
   "stroke-color",
   "stroke-width",
+];
+
+export const alignTypes = [
+  {
+    align: "left",
+    icon: AlignLeft,
+  },
+  {
+    align: "center",
+    icon: AlignCenter,
+  },
+  {
+    align: "right",
+    icon: AlignRight,
+  },
 ];
 
 export const fonts = [
@@ -153,6 +169,11 @@ export interface Editor {
   addText: (value: string, options?: ITextboxOptions) => void;
   changeOpacity: (value: number) => void;
   changeFontFamily: (value: string) => void;
+  changeFontWeight: (value: number) => void;
+  changeFontStyle: (value: string) => void;
+  changeTextAlign: (value: string) => void;
+  changeFontLinethrough: (value: boolean) => void;
+  changeFontUnderline: (value: boolean) => void;
   getActiveOpacity: () => number;
   bringForward: () => void;
   sendBackwards: () => void;
@@ -174,4 +195,9 @@ export interface Editor {
   getActiveStrokeًWidth: () => void;
   getActiveFontFamily: () => string;
   getActiveStrokeًDashArray: () => number[];
+  getActiveFontWeight: () => number;
+  getActiveFontStyle: () => string;
+  getActiveTextAlign: () => string;
+  getActiveFontLinethrough: () => boolean;
+  getActiveFontUnderline: () => boolean;
 }

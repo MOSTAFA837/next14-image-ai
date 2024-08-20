@@ -9,6 +9,7 @@ import {
   EditorHookProps,
   FILL_COLOR,
   FONT_FAMILY,
+  FONT_WEIGHT,
   HEXAGON_OPTIONS,
   RECTANGLE_OPTIONS,
   STROKE_COLOR,
@@ -154,6 +155,56 @@ const buildEditor = ({
       });
       canvas.renderAll();
     },
+    changeFontWeight: (value: number) => {
+      canvas.getActiveObjects().forEach((object) => {
+        if (isTextType(object.type)) {
+          // @ts-ignore
+          object.set({ fontWeight: value });
+        }
+      });
+
+      canvas.renderAll();
+    },
+    changeFontStyle: (value: string) => {
+      canvas.getActiveObjects().forEach((object) => {
+        if (isTextType(object.type)) {
+          // @ts-ignore
+          object.set({ fontStyle: value });
+        }
+      });
+
+      canvas.renderAll();
+    },
+    changeFontLinethrough: (value: boolean) => {
+      canvas.getActiveObjects().forEach((object) => {
+        if (isTextType(object.type)) {
+          // @ts-ignore
+          object.set({ linethrough: value });
+        }
+      });
+
+      canvas.renderAll();
+    },
+    changeFontUnderline: (value: boolean) => {
+      canvas.getActiveObjects().forEach((object) => {
+        if (isTextType(object.type)) {
+          // @ts-ignore
+          object.set({ underline: value });
+        }
+      });
+
+      canvas.renderAll();
+    },
+    changeTextAlign: (value: string) => {
+      canvas.getActiveObjects().forEach((object) => {
+        if (isTextType(object.type)) {
+          // @ts-ignore
+          object.set({ textAlign: value });
+        }
+      });
+
+      canvas.renderAll();
+    },
     addCircle: () => {
       const object = new fabric.Circle({
         ...CIRCLE_OPTIONS,
@@ -294,7 +345,57 @@ const buildEditor = ({
       if (!selctedObject) return fontFamily;
 
       // @ts-ignore
-      const value = selctedObject.get("fontFamily") || strokeDashArray;
+      const value = selctedObject.get("fontFamily") || fontFamily;
+
+      return value;
+    },
+    getActiveFontWeight: () => {
+      const selctedObject = selectedObjects[0];
+
+      if (!selctedObject) return FONT_WEIGHT;
+
+      // @ts-ignore
+      const value = selctedObject.get("fontWeight") || FONT_WEIGHT;
+
+      return value;
+    },
+    getActiveFontStyle: () => {
+      const selctedObject = selectedObjects[0];
+
+      if (!selctedObject) return "normal";
+
+      // @ts-ignore
+      const value = selctedObject.get("fontStyle") || "normal";
+
+      return value;
+    },
+    getActiveFontLinethrough: () => {
+      const selctedObject = selectedObjects[0];
+
+      if (!selctedObject) return false;
+
+      // @ts-ignore
+      const value = selctedObject.get("linethrough") || false;
+
+      return value;
+    },
+    getActiveFontUnderline: () => {
+      const selctedObject = selectedObjects[0];
+
+      if (!selctedObject) return false;
+
+      // @ts-ignore
+      const value = selctedObject.get("underline") || false;
+
+      return value;
+    },
+    getActiveTextAlign: () => {
+      const selctedObject = selectedObjects[0];
+
+      if (!selctedObject) return "left";
+
+      // @ts-ignore
+      const value = selctedObject.get("textAlign") || "left";
 
       return value;
     },
