@@ -71,6 +71,32 @@ export const fonts = [
   "Lucida Console",
 ];
 
+export const filters = [
+  "none",
+  "polaroid",
+  "sepia",
+  "kodachrome",
+  "contrast",
+  "brightness",
+  "greyscale",
+  "brownie",
+  "vintage",
+  "technicolor",
+  "pixelate",
+  "invert",
+  "blur",
+  "sharpen",
+  "emboss",
+  "removecolor",
+  "blacknwhite",
+  "vibrance",
+  "blendcolor",
+  "huerotate",
+  "resize",
+  "saturation",
+  "gamma",
+];
+
 export type ActiveTool =
   | "select"
   | "shapes"
@@ -167,6 +193,7 @@ export type BuilsEditorProps = {
 
 export interface Editor {
   addImage: (value: string) => void;
+  changeImageFilter: (value: string) => void;
   delete: () => void;
   addText: (value: string, options?: ITextboxOptions) => void;
   changeOpacity: (value: number) => void;
