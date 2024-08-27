@@ -194,6 +194,8 @@ export type BuilsEditorProps = {
 };
 
 export interface Editor {
+  enableDrawingMode: () => void;
+  disableDrawingMode: () => void;
   onCopy: () => void;
   onPaste: () => void;
   addImage: (value: string) => void;
@@ -226,7 +228,7 @@ export interface Editor {
   canvas: fabric.Canvas;
   getActiveFillColor: () => void;
   getActiveStrokeColor: () => void;
-  getActiveStrokeًWidth: () => void;
+  getActiveStrokeWidth: () => void;
   getActiveFontFamily: () => string;
   getActiveStrokeًDashArray: () => number[];
   getActiveFontWeight: () => number;

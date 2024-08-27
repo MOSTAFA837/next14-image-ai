@@ -17,7 +17,7 @@ export default function StrokeWidthSidebar({
   activeTool,
   onChangeActiveTool,
 }: StrokeWidthSidebarProps) {
-  const widthValue = editor?.getActiveStrokeًWidth() || STROKE_WIDTH;
+  const widthValue = editor?.getActiveStrokeWidth() || STROKE_WIDTH;
   const typeValue = editor?.getActiveStrokeًDashArray() || STROKE_DASH_ARRAY;
 
   const onClose = () => {

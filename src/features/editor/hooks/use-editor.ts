@@ -72,6 +72,16 @@ const buildEditor = ({
   };
 
   return {
+    enableDrawingMode: () => {
+      canvas.discardActiveObject();
+      canvas.renderAll();
+      canvas.isDrawingMode = true;
+      canvas.freeDrawingBrush.width = strokeWidth;
+      canvas.freeDrawingBrush.color = strokeColor;
+    },
+    disableDrawingMode: () => {
+      canvas.isDrawingMode = false;
+    },
     changeImageFilter: (value: string) => {
       const objects = canvas.getActiveObjects();
       objects.forEach((object) => {
@@ -161,6 +171,8 @@ const buildEditor = ({
       canvas.getActiveObjects().forEach((object) => {
         object.set({ strokeWidth: value });
       });
+      canvas.freeDrawingBrush.width = value;
+
       canvas.renderAll();
     },
     changeStrokeDashArray: (value: number[]) => {
@@ -180,6 +192,7 @@ const buildEditor = ({
 
         object.set({ stroke: value });
       });
+      canvas.freeDrawingBrush.color = value;
       canvas.renderAll();
     },
     changeFontFamily: (value: string) => {
@@ -368,7 +381,7 @@ const buildEditor = ({
 
       return value;
     },
-    getActiveStrokeًWidth: () => {
+    getActiveStrokeWidth: () => {
       const selctedObject = selectedObjects[0];
 
       if (!selctedObject) return strokeWidth;
