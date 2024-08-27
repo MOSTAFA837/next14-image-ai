@@ -11,7 +11,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { BsBorderWidth } from "react-icons/bs";
-import { ArrowDown, ArrowUp, ChevronDown, Trash } from "lucide-react";
+import { ArrowDown, ArrowUp, ChevronDown, Copy, Trash } from "lucide-react";
 import { RxTransparencyGrid } from "react-icons/rx";
 import { isTextType } from "../utils";
 import { FaBold, FaItalic, FaStrikethrough, FaUnderline } from "react-icons/fa";
@@ -343,6 +343,21 @@ export default function Toolbar({
             className={cn(activeTool === "opacity" && "bg-gray-200")}
           >
             <RxTransparencyGrid className="size-4" />
+          </Button>
+        </Hint>
+      </div>
+      <div className="flex items-center h-full justify-center">
+        <Hint label="Duplicate" side="bottom" sideOffset={5}>
+          <Button
+            onClick={() => {
+              editor?.onCopy();
+              editor?.onPaste();
+            }}
+            size="icon"
+            variant="ghost"
+            className={cn(activeTool === "opacity" && "bg-gray-200")}
+          >
+            <Copy className="size-4" />
           </Button>
         </Hint>
       </div>

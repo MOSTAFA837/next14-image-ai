@@ -177,6 +177,8 @@ export interface EditorHookProps {
 }
 
 export type BuilsEditorProps = {
+  copy: () => void;
+  paste: () => void;
   canvas: fabric.Canvas;
   fillColor: string;
   strokeColor: string;
@@ -192,6 +194,8 @@ export type BuilsEditorProps = {
 };
 
 export interface Editor {
+  onCopy: () => void;
+  onPaste: () => void;
   addImage: (value: string) => void;
   changeImageFilter: (value: string) => void;
   delete: () => void;

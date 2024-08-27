@@ -22,6 +22,7 @@ import {
 import { useAutoResize } from "./use-auto-resize";
 import { useCanvasEvents } from "./use-canvas-events";
 import { createFilter, isTextType } from "../utils";
+import { useClipboard } from "./use-clipboard";
 
 interface UseEditorProps {
   initialCanvas: fabric.Canvas;
@@ -41,6 +42,8 @@ const buildEditor = ({
   setStrokeWidth,
   setStrokeDashArray,
   setFontFamily,
+  copy,
+  paste,
 }: BuilsEditorProps): Editor => {
   const getWorkspace = () => {
     return canvas.getObjects().find((object) => object.name === "clip");
@@ -453,6 +456,8 @@ const buildEditor = ({
 
       return value;
     },
+    onCopy: () => copy(),
+    onPaste: () => paste(),
     canvas,
     selectedObjects,
   };
@@ -470,6 +475,8 @@ export default function useEditor({ clearSelectionCallback }: EditorHookProps) {
     useState<number[]>(STROKE_DASH_ARRAY);
   const [fontFamily, setFontFamily] = useState(FONT_FAMILY);
 
+  const { copy, paste } = useClipboard({ canvas });
+
   useAutoResize({ canvas, container });
 
   useCanvasEvents({
@@ -481,6 +488,8 @@ export default function useEditor({ clearSelectionCallback }: EditorHookProps) {
   const editor = useMemo(() => {
     if (canvas) {
       return buildEditor({
+        copy,
+        paste,
         canvas,
         fillColor,
         strokeColor,
@@ -498,6 +507,8 @@ export default function useEditor({ clearSelectionCallback }: EditorHookProps) {
 
     return undefined;
   }, [
+    copy,
+    paste,
     canvas,
     fillColor,
     strokeColor,
